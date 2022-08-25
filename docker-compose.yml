@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  nest_db:
+    image: 'mysql'
+    ports:
+      - 5434:5434
+    environment:
+      - MYSQL_USER=kyhung
+      - MYSQL_ROOT_PASSWORD=Kyhung98@
+      - MYSQL_DB=nest_db
+    networks:
+      - pj-nestjs
+networks:
+  pj-nestjs:
