@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Shoe` MODIFY `price` VARCHAR(191) NOT NULL;

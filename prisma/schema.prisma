@@ -26,3 +26,15 @@ model Bookmark {
   Description String?
   Link String
 }
+
+model Shoe {
+  id Int @id @default(autoincrement())
+  createAr DateTime @default(now())
+
+  name String
+  description String
+  image String
+  price String
+
+  
+}
