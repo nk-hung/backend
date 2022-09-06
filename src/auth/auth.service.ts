@@ -5,7 +5,9 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import * as bcrypt from 'bcryptjs';
 
 import { PrismaService } from 'src/prisma/prisma.service';
+import { SUCCESS } from 'src/shared/constants/message';
 import { AuthDto } from 'src/shared/dtos/auth.dto';
+import { Status } from 'src/shared/enums/statusHttp.enum';
 
 @Injectable()
 export class AuthService {
@@ -59,14 +61,18 @@ export class AuthService {
     return this.signToken(user.id, user.email);
   }
 
-  signToken(userId: number, email: string): Promise<string> {
+  async signToken(userId: number, email: string) {
     const payload = { sub: userId, email };
     const secret = this.confjg.get('JWT_SECRET');
-    const access_token = this.jwtService.signAsync(payload, {
-      expiresIn: '60s',
+    const access_token = await this.jwtService.sign(payload, {
+      expiresIn: '3600s',
       secret,
     });
-
-    return access_token;
+    console.log('token:', access_token);
+    return {
+      status: Status.Success,
+      message: SUCCESS,
+      token: access_token,
+    };
   }
 }

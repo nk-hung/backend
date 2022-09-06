@@ -16,25 +16,28 @@ model User {
 
   email String @unique
   hash String
+  books Book[]
 }
 
-model Bookmark {
+model Book {
   id Int @id @default(autoincrement())
   createAt DateTime @default(now())
 
   title String
-  Description String?
-  Link String
+  description String?
+  image String
+  price Int
+  rating Int?
+  countInStock Int?
+  numReview Int?
+  review Review[]
+  user User? @relation(fields: [userId], references: [id])
+  userId Int?
 }
 
-model Shoe {
+model Review {
   id Int @id @default(autoincrement())
-  createAr DateTime @default(now())
-
-  name String
-  description String
-  image String
-  price String
-
-  
+  book Book @relation(fields: [bookId], references: [id])
+  bookId Int @unique
+  comment String
 }
