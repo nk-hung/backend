@@ -6,13 +6,13 @@ import { BookService } from './book.service';
 export class BookController {
   constructor(private readonly bookService: BookService) {}
 
-  @Get('')
+  @Get()
   getAll() {
     return this.bookService.getAll();
   }
 
   @Get('/:id')
-  getById(@Param() id: string) {
+  getById(@Param('id') id: string) {
     return this.bookService.getById(id);
   }
 

@@ -17,6 +17,7 @@ model User {
   email String @unique
   hash String
   books Book[]
+  role Role @default(USER)
 }
 
 model Book {
@@ -40,4 +41,9 @@ model Review {
   book Book @relation(fields: [bookId], references: [id])
   bookId Int @unique
   comment String
+}
+
+enum Role {
+  ADMIN
+  USER
 }
