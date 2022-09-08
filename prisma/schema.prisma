@@ -13,11 +13,14 @@ datasource db {
 model User {
   id Int @id @default(autoincrement())
   createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
 
+  username String
   email String @unique
   hash String
   books Book[]
   role Role @default(USER)
+  hashedRT String?
 }
 
 model Book {

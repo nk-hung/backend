@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseGuards } from '@nestjs/common';
+import { JwtGuard } from 'src/auth/guard';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -15,6 +16,7 @@ export class BookService {
     });
   }
 
+  @UseGuards(JwtGuard)
   async create(data) {
     return this.prisma.book.create({
       data: {

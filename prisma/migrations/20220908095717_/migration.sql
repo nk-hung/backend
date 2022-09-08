@@ -2,8 +2,12 @@
 CREATE TABLE `User` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updateAt` DATETIME(3) NOT NULL,
+    `username` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `hash` VARCHAR(191) NOT NULL,
+    `role` ENUM('ADMIN', 'USER') NOT NULL DEFAULT 'USER',
+    `hashedRT` VARCHAR(191) NULL,
 
     UNIQUE INDEX `User_email_key`(`email`),
     PRIMARY KEY (`id`)
